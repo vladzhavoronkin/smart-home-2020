@@ -20,9 +20,4 @@ public class Light {
     public void setOn(boolean on) {
         isOn = on;
     }
-
-
-
-
-
 }

@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop;
 
 public class SensorEvent {
+
     private final SensorEventType type;
     private final String objectId;
 
@@ -16,8 +17,6 @@ public class SensorEvent {
     public String getObjectId() {
         return objectId;
     }
-
-
 
     @Override
     public String toString() {
