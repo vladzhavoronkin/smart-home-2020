@@ -3,7 +3,23 @@ package ru.sbt.mipt.oop;
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_OFF;
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 
-public class LightEventManager implements Managable {
+public class LightEventManager implements EventManagable {
+
+    private final CommandSender commandSender;
+
+    public LightEventManager(CommandSender commandSender) {
+        this.commandSender = commandSender;
+    }
+
+    public void turnOffAllLights(SmartHome smartHome) {
+        for (Room homeRoom : smartHome.getRooms()) {
+            for (Light light : homeRoom.getLights()) {
+                light.setOn(false);
+                SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
+                commandSender.sendCommand(command);
+            }
+        }
+    }
 
     @Override
     public void manage(SensorEvent event, SmartHome smartHome) {

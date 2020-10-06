@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class TestEventGenerator implements EventGeneratable {
+public class TestEventGenerator implements EventGenerator {
 
     @Override
     public SensorEvent getNextSensorEvent() {

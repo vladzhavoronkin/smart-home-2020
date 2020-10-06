@@ -6,22 +6,22 @@ import java.util.List;
 
 public class Application {
 
-    private final SmartHomeGettable smartHome;
-    private List<Managable> managers;
+    private final SmartHomeGetter smartHome;
+    private List<EventManagable> managers;
 
-    public Application(SmartHomeGettable smartHome, List<Managable> managers) {
+    public Application(SmartHomeGetter smartHome, List<EventManagable> managers) {
         this.smartHome = smartHome;
         this.managers = managers;
     }
 
     private void run() throws IOException {
-        SmartHome smartHome = this.smartHome.getSmartHome();
+        SmartHome smartHome = this.smartHome.loadSmartHome();
         // начинаем цикл обработки событий
         new EventManager(new TestEventGenerator(), this.managers).startManageEvents(smartHome);
     }
 
     public static void main(String... args) throws IOException {
-        List<Managable> managers = new ArrayList<>();
+        List<EventManagable> managers = new ArrayList<>();
         managers.add(new LightEventManager());
         managers.add(new DoorEventManager());
         Application application = new Application(new SmartHomeFromJsonFile(), managers);
