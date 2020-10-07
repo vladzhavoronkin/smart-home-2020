@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.main;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +24,8 @@ public class Application {
         List<EventManagable> managers = new ArrayList<>();
         managers.add(new LightEventManager());
         managers.add(new DoorEventManager());
-        Application application = new Application(new SmartHomeFromJsonFile(), managers);
+        managers.add(new HallEventManager(new CommandSender()));
+        Application application = new Application(new SmartHomeFromJsonFile("smart-home-1.js"), managers);
         application.run();
     }
 }

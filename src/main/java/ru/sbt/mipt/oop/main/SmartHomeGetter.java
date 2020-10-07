@@ -1,6 +1,4 @@
-package ru.sbt.mipt.oop;
-
-import java.io.IOException;
+package ru.sbt.mipt.oop.main;
 
 public interface SmartHomeGetter {
 
