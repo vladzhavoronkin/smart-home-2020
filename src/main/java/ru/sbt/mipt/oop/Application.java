@@ -24,6 +24,7 @@ public class Application {
         List<EventManagable> managers = new ArrayList<>();
         managers.add(new LightEventManager());
         managers.add(new DoorEventManager());
+        managers.add(new HallEventManager(new CommandSender()));
         Application application = new Application(new SmartHomeFromJsonFile(), managers);
         application.run();
     }
