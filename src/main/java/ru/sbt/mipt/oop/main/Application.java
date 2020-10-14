@@ -25,6 +25,7 @@ public class Application {
         managers.add(new LightEventManager());
         managers.add(new DoorEventManager());
         managers.add(new HallEventManager(new CommandSender()));
+        managers.add(new AlarmEventManager());
         Application application = new Application(new SmartHomeFromJsonFile("smart-home-1.js"), managers);
         application.run();
     }
