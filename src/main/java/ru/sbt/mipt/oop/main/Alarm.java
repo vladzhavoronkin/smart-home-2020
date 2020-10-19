@@ -3,17 +3,42 @@ package ru.sbt.mipt.oop.main;
 public class Alarm implements Actionable {
 
     private AlarmState alarmState;
+    private String password;
 
-    public Alarm(AlarmState alarmState) {
-        this.alarmState = alarmState;
+    public Alarm() {
+        this.alarmState = new AlarmIsOffState();
+        this.alarmState.setAlarm(this);
+        this.password = null;
+    }
+
+    public void changeState(AlarmState state){
+        alarmState = state;
+        state.setAlarm(this);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public String getPassword() {
+        return password;
     }
 
     public AlarmState isActivated() {
         return alarmState;
     }
 
-    public void setActivated(AlarmState state) {
-        alarmState = state;
+    public void activateAlarm(String word){
+        alarmState.activateAlarm(word);
+    }
+
+    public void deactivateAlarm(String word){
+        alarmState.deactivateAlarm(word);
+    }
+
+    public void enableAlarm(){
+        alarmState.enableAlarm();
     }
 
     @Override

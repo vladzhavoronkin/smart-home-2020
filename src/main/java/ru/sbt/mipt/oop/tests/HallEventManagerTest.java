@@ -29,7 +29,7 @@ class HallEventManagerTest {
         Room room2 = new Room(Arrays.asList(light3, light4),
                 Arrays.asList(door2),
                 "room2");
-        SmartHome smartHome = new SmartHome(Arrays.asList(room1, room2));
+        SmartHome smartHome = new SmartHome(Arrays.asList(room1, room2), new Alarm());
         //when
         new HallEventManager(new CommandSender()).turnOffAllLights(smartHome);
         boolean isSuccess = true;
@@ -61,7 +61,7 @@ class HallEventManagerTest {
         Room hall = new Room(Arrays.asList(light3, light4),
                 Arrays.asList(door2),
                 "hall");
-        SmartHome smartHome = new SmartHome(Arrays.asList(room1, hall));
+        SmartHome smartHome = new SmartHome(Arrays.asList(room1, hall), new Alarm());
         SensorEvent event = new SensorEvent(DOOR_CLOSED, "2");
         //when
         for (EventManagable manager : managers){
@@ -97,7 +97,7 @@ class HallEventManagerTest {
         Room hall = new Room(Arrays.asList(light3, light4),
                 Arrays.asList(door2),
                 "hall");
-        SmartHome smartHome = new SmartHome(Arrays.asList(room1, hall));
+        SmartHome smartHome = new SmartHome(Arrays.asList(room1, hall), new Alarm());
         SensorEvent event = new SensorEvent(DOOR_CLOSED, "2");
         //when
         for (EventManagable manager : managers) {

@@ -23,7 +23,7 @@ class DoorEventManagerTest {
         Room room = new Room(Arrays.asList(light),
                 Arrays.asList(door),
                 "room");
-        SmartHome smartHome = new SmartHome(Arrays.asList(room));
+        SmartHome smartHome = new SmartHome(Arrays.asList(room), new Alarm());
         SensorEvent event = new SensorEvent(DOOR_OPEN, "1");
         //when
         for (EventManagable manager : managers){
@@ -44,7 +44,7 @@ class DoorEventManagerTest {
         Room room = new Room(Arrays.asList(light),
                 Arrays.asList(door),
                 "room");
-        SmartHome smartHome = new SmartHome(Arrays.asList(room));
+        SmartHome smartHome = new SmartHome(Arrays.asList(room), new Alarm());
         SensorEvent event = new SensorEvent(DOOR_CLOSED, "1");
         //when
         for (EventManagable manager : managers){

@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.main;
 
-import static ru.sbt.mipt.oop.main.AlarmState.ALARM_IS_SCREAMING;
 import static ru.sbt.mipt.oop.main.SensorEventType.LIGHT_OFF;
 import static ru.sbt.mipt.oop.main.SensorEventType.LIGHT_ON;
 
@@ -8,7 +7,7 @@ public class LightEventManager implements EventManagable {
 
     @Override
     public void manage(SensorEvent event, SmartHome smartHome) {
-        if (smartHome.getAlarm().isActivated() != ALARM_IS_SCREAMING) {
+
             if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
                 smartHome.execute(object -> {
                     if (object instanceof Light) {
@@ -27,4 +26,3 @@ public class LightEventManager implements EventManagable {
             }
         }
     }
-}

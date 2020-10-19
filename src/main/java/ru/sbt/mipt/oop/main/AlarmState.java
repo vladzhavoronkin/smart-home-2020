@@ -1,5 +1,9 @@
 package ru.sbt.mipt.oop.main;
 
-public enum AlarmState {
-    ALARM_ACTIVATED, ALARM_DEACTIVATED, ALARM_IS_SCREAMING
+interface AlarmState{
+
+    void setAlarm(Alarm alarm);
+    void activateAlarm(String password);
+    void deactivateAlarm(String password);
+    void enableAlarm();
 }
