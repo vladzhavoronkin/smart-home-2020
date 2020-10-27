@@ -11,13 +11,14 @@ public class HallEventManager implements EventManagable {
     }
 
     public void turnOffAllLights(SmartHome smartHome) {
-        for (Room homeRoom : smartHome.getRooms()) {
-            for (Light light : homeRoom.getLights()) {
+        smartHome.execute(object -> {
+            if (object instanceof Light){
+                Light light = (Light) object;
                 light.setOn(false);
                 SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
                 commandSender.sendCommand(command);
             }
-        }
+        });
     }
 
     @Override

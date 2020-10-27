@@ -24,8 +24,8 @@ public class Application {
         List<EventManagable> managers = new ArrayList<>();
         managers.add(new AlarmEventManager());
         managers.add(new AlarmDecorator(new LightEventManager()));
-        managers.add(new AlarmDecorator(new DoorEventManager()));
-        managers.add(new AlarmDecorator(new HallEventManager(new CommandSender())));
+        managers.add(new DoorEventManager());
+        managers.add (new HallEventManager(new CommandSender()));
         Application application = new Application(new SmartHomeFromJsonFile("smart-home-1.js"), managers);
         application.run();
     }
