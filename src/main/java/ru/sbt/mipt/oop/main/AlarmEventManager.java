@@ -12,10 +12,10 @@ public class AlarmEventManager implements EventManagable {
                 if (object instanceof Alarm){
                     Alarm alarm = (Alarm) object;
                     if(event.getType() == ALARM_ACTIVATE){
-                        alarm.activateAlarm(event.getType().getPassword());
+                        alarm.activateAlarm(event.getPassword());
                     }
                     if(event.getType() == ALARM_DEACTIVATE){
-                        alarm.deactivateAlarm(event.getType().getPassword());
+                        alarm.deactivateAlarm(event.getPassword());
                     }
                 }
 

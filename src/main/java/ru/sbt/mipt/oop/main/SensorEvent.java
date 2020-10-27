@@ -4,11 +4,14 @@ public class SensorEvent {
 
     private final SensorEventType type;
     private final String objectId;
+    private String password;
 
     public SensorEvent(SensorEventType type, String objectId) {
         this.type = type;
         this.objectId = objectId;
     }
+
+    public String getPassword() { return password; }
 
     public SensorEventType getType() {
         return type;

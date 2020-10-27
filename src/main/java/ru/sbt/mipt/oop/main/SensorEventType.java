@@ -3,10 +3,4 @@ package ru.sbt.mipt.oop.main;
 public enum SensorEventType {
 
     LIGHT_ON, LIGHT_OFF, DOOR_OPEN, DOOR_CLOSED, ALARM_ACTIVATE, ALARM_DEACTIVATE;
-
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
 }
