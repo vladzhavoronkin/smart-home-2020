@@ -1,10 +1,10 @@
 package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.main.Alarm;
-import ru.sbt.mipt.oop.main.AlarmIsOffState;
-import ru.sbt.mipt.oop.main.AlarmIsOnState;
-import ru.sbt.mipt.oop.main.AlarmIsSignallingState;
+import ru.sbt.mipt.oop.main.elements.Alarm;
+import ru.sbt.mipt.oop.main.alarmstates.AlarmIsOffState;
+import ru.sbt.mipt.oop.main.alarmstates.AlarmIsOnState;
+import ru.sbt.mipt.oop.main.alarmstates.AlarmIsSignallingState;
 
 import static org.junit.jupiter.api.Assertions.*;
 

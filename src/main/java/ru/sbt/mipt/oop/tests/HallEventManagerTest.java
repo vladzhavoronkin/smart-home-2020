@@ -1,15 +1,18 @@
 package ru.sbt.mipt.oop.tests;
 
 import org.junit.jupiter.api.Test;
-import ru.sbt.mipt.oop.main.*;
+import ru.sbt.mipt.oop.main.command.CommandSender;
+import ru.sbt.mipt.oop.main.elements.*;
+import ru.sbt.mipt.oop.main.events.SensorEvent;
+import ru.sbt.mipt.oop.main.managers.EventManagable;
+import ru.sbt.mipt.oop.main.managers.HallEventManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.sbt.mipt.oop.main.SensorEventType.DOOR_CLOSED;
-import static ru.sbt.mipt.oop.main.SensorEventType.DOOR_OPEN;
+import static ru.sbt.mipt.oop.main.events.SensorEventType.DOOR_CLOSED;
 
 class HallEventManagerTest {
 
