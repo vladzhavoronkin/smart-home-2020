@@ -53,4 +53,6 @@ public class Config {
                 .forEach(sensorEventsManager::registerEventHandler);
         return sensorEventsManager;
     }
+
+
 }
