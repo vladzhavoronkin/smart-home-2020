@@ -4,27 +4,24 @@ import com.coolcompany.smarthome.events.CCSensorEvent;
 import ru.sbt.mipt.oop.main.events.SensorEvent;
 import ru.sbt.mipt.oop.main.events.SensorEventType;
 
-import java.util.HashMap;
 import java.util.Map;
 
 
 public class CCSensorEventFactory implements EventFactory {
 
-    private CCSensorEvent event;
+    private final CCSensorEvent event;
+    private final Map<String, SensorEventType> eventTypes;
 
-    public CCSensorEventFactory(CCSensorEvent event) {
+    public CCSensorEventFactory(CCSensorEvent event, Map<String, SensorEventType> eventTypes) {
         this.event = event;
+        this.eventTypes = eventTypes;
     }
 
     @Override
     public SensorEvent convertEvent() {
-        Map<String, SensorEventType> eventTypes = new HashMap<>();
-        eventTypes.put("LightIsOn", SensorEventType.LIGHT_ON);
-        eventTypes.put("LightIsOff", SensorEventType.LIGHT_OFF);
-        eventTypes.put("DoorIsOpen", SensorEventType.DOOR_OPEN);
-        eventTypes.put("DoorIsClosed", SensorEventType.DOOR_CLOSED);
-        eventTypes.put("DoorIsLocked", SensorEventType.ALARM_ACTIVATE);
-        eventTypes.put("DoorIsUnlocked", SensorEventType.ALARM_DEACTIVATE);
+        if (!eventTypes.containsKey(event.getEventType())) {
+           throw new IllegalArgumentException("Command does not exist");
+        }
         return new SensorEvent(eventTypes.get(event.getEventType()), event.getObjectId());
     }
 }
