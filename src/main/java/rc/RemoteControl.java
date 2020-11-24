@@ -7,4 +7,6 @@ public interface RemoteControl {
      * @param rcId remote control id
      */
     void onButtonPressed(String buttonCode, String rcId);
+
+    String getId();
 }

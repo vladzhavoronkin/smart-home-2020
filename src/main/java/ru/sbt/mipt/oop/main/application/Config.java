@@ -4,6 +4,8 @@ import com.coolcompany.smarthome.events.SensorEventsManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import rc.RemoteControl;
+import rc.RemoteControlRegistry;
 import ru.sbt.mipt.oop.main.adapter.EventAdapter;
 import ru.sbt.mipt.oop.main.command.CommandSender;
 import ru.sbt.mipt.oop.main.decorator.AlarmDecorator;
@@ -14,8 +16,12 @@ import ru.sbt.mipt.oop.main.managers.DoorEventManager;
 import ru.sbt.mipt.oop.main.managers.EventManagable;
 import ru.sbt.mipt.oop.main.managers.HallEventManager;
 import ru.sbt.mipt.oop.main.managers.LightEventManager;
+import ru.sbt.mipt.oop.main.remotecontrol.RemoteControlCommand;
+import ru.sbt.mipt.oop.main.remotecontrol.SmartHomeRemoteControl;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @ComponentScan("ru.sbt.mipt.oop")
@@ -54,5 +60,35 @@ public class Config {
         return sensorEventsManager;
     }
 
+    @Bean
+    public Map<String, RemoteControlCommand> commandsByButtons(Map<String,
+                                            RemoteControlCommand> remoteCommands) {
+        Map<String, String> commandsNames = Map.of(
+                "activateAlarmCommand", "A",
+                "closeHallDoorCommand", "B",
+                "makeAlarmSignallingCommand", "C",
+                "turnOffAllLightsCommand", "D",
+                "turnOnAllLightsCommand", "1",
+                "turnOnHallLightCommand", "2"
+        );
+        Map<String, RemoteControlCommand> commandByButtons = new HashMap<>();
+        remoteCommands.forEach((k, v) -> {
+            commandByButtons.put(commandsNames.get(k), v);
+        });
+        return commandByButtons;
+    }
 
+    @Bean
+    public SmartHomeRemoteControl smartHomeRemoteControl (Map<String, RemoteControlCommand> commandsByButtons) {
+        return new SmartHomeRemoteControl("0" ,commandsByButtons);
+    }
+
+    @Bean
+    public RemoteControlRegistry remoteControlRegistry(Collection<RemoteControl> remoteControls) {
+        RemoteControlRegistry remoteControlRegistry = new RemoteControlRegistry();
+        remoteControls.forEach(remoteControl -> {
+            remoteControlRegistry.registerRemoteControl(remoteControl, remoteControl.getId());
+        });
+        return remoteControlRegistry;
+    }
 }
